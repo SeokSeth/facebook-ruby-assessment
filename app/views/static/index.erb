@@ -1,2 +1,32 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+
+<h1 class="text-center"><%=@msg%></h1>
+<% if !@post.nil?%>
+<div class="container">
+	<div class="row">
+		<h2 class="text-center">Posts</h2>
+		<% @post.each do |t|%>
+		<div class="container">
+		<div class="row">
+            <div class="row">
+                <div class="center text-center">
+                    <div class="box">
+                        <div class="box-content">
+                            <h1 class="tag-title">
+                            <%=t.content%>
+                            </h1>
+                            <hr />
+                            <p><%@user = User.find(t.user_id)%>
+                            <%=@user.username%></p>
+                            <br />
+                            <a href="/post/show/<%=t.id%>" class="btn btn-block btn-primary">Learn more</a>
+                        </div>
+                        <form action="/plike/new" method=post><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>Like!</button></form>
+                        <%=count_post_like(t)%>
+                        <%byebug%>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+  <%end%>
+  <%end%>

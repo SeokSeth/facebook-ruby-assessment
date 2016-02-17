@@ -9,6 +9,7 @@ gem 'sinatra-contrib'
 
 # Adding thin gem as advised
 gem 'thin'
+gem 'bcrypt', '~> 3.1.7'
 
 # Adding ActiveRecord and Database Components
 gem 'activerecord'
@@ -20,6 +21,7 @@ gem 'pg'
 
 # Adding rake for management
 gem 'rake'
+gem 'byebug'
 
 # Adding rspec for running unit testing
 gem 'rspec'

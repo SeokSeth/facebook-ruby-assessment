@@ -1,0 +1,55 @@
+<p class="center"><%=@msg%></p>
+		<table class="table">
+<h1 class="text-center"><%=@post.content%></h1>  
+
+<form action="/comment/new" method="post">
+			<input type="text" placeholder="Write comment" name="comment" class="form-control center-block">
+			<input type="hidden" name="post_id" value="<%=@post.id%>">
+					<button type="submit" value="comment" class="center-block btn btn-default">Comment
+					</button>
+</form>
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>
+			Comment id
+		</th>
+		<th>
+			Comment
+		</th>
+		<th>
+			Username
+		</th>
+		<th>
+		</th>
+		<th>
+		</th>
+
+	</tr>
+<% @comment.each do |a| %>
+	<tr>
+		<td>
+			<%=a.id%>
+		</td>
+		<td>
+			<%=a.opinion%>
+		</td>
+		<td>
+			<%@username = User.find(a.user_id)%>
+			<%=@username.username%>
+		</td>
+		<td>
+		<% if current_user && (a.user_id == current_user.id)%>
+		<form action="/comment/delete/<%=a.id%>" method="post"><button class ="center-block btn btn-default">Delete</button></form>
+		</td>
+		<td>
+		<form action="/comment/edit/<%=a.id%>" method=get><button class ="center-block btn btn-default">Edit</button></form>
+		</td>
+		<% else %>
+		<td>
+		</td>
+		<%end%>
+		</td>
+	</tr>
+
+<%end%>
+</table>
